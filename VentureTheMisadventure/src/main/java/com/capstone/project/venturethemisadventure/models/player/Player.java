@@ -12,26 +12,6 @@ public  class Player extends Character {
         this.type=type;
     }
 
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
-    }
-
-    @Override
-    public int getHealthValue() {
-        return super.getHealthValue();
-    }
-
-    @Override
-    public void setHealthValue(int healthValue) {
-        super.setHealthValue(healthValue);
-    }
-
     public void attack (Character enemy, IAttack weapon){
         getWeapon().attack(enemy);
     }

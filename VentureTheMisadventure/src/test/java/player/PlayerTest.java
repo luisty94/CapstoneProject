@@ -27,7 +27,7 @@ public class PlayerTest {
     public void before() {
         dagger = new Dagger();
         sword = new Sword();
-        goblin = new Goblin("Ungo", 70, 90);
+        goblin = new Goblin("Ungo", 70, dagger,90);
         player = new Player("Ferghus",ClassType.HERO,250, sword, 100);
     }
 

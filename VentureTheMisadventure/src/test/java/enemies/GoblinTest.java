@@ -2,6 +2,7 @@ package enemies;
 
 import com.capstone.project.venturethemisadventure.models.attack.Dagger;
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
+import com.capstone.project.venturethemisadventure.models.attack.Sword;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
 import com.capstone.project.venturethemisadventure.models.player.Player;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
@@ -22,7 +23,8 @@ public class GoblinTest {
     @Before()
     public void before() {
         dagger = new Dagger();
-        goblin = new Goblin("Ungo", 70, 90);
+        sword = new Sword();
+        goblin = new Goblin("Ungo", 70, dagger, 90);
         hero = new Hero("Ferghus",250, sword, 100);
     }
 

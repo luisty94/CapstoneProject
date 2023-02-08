@@ -2,62 +2,55 @@ package player;
 
 import com.capstone.project.venturethemisadventure.models.attack.Dagger;
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
-import com.capstone.project.venturethemisadventure.models.attack.Sword;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
-import com.capstone.project.venturethemisadventure.models.player.Player;
 import com.capstone.project.venturethemisadventure.models.player.classes.ClassType;
-import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
+import com.capstone.project.venturethemisadventure.models.player.classes.Thief;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
-public class HeroTest {
-
+public class ThiefTest {
+    Thief thief;
     Goblin goblin;
-    Hero hero;
     IAttack dagger;
     IAttack sword;
-    Player player;
 
 
     @Before
     public void before() {
         dagger = new Dagger();
-        sword = new Sword();
         goblin = new Goblin("Ungo", 70, dagger,90);
-        hero = new Hero("The Hero", 200, sword, 200);
+        thief = new Thief("Shadow", 100, 300);
     }
 
     @Test
     public void hasName() {
-        assertEquals("The Hero", hero.getName());
+        assertEquals("Shadow", thief.getName());
     }
 
     @Test
     public void hasHealthValue() {
-        assertEquals(200, hero.getHealthValue());
+        assertEquals(100, thief.getHealthValue());
     }
     @Test
     public void hasType(){
-        assertEquals(ClassType.HERO, hero.getType());
+        assertEquals(ClassType.THIEF, thief.getType());
     }
     @Test
     public void hasSpeed() {
-        assertEquals(200, hero.getSpeed());
+        assertEquals(300, thief.getSpeed());
     }
 
     @Test
     public void canAttack() {
-        hero.attack(goblin);
-        assertEquals(20, goblin.getHealthValue());
+        thief.attack(goblin);
+        assertEquals(30, goblin.getHealthValue());
     }
 
     @Test
     public void canTakeDamage(){
-        hero.takeDamage(100);
-        assertEquals(100, hero.getHealthValue());
+        thief.takeDamage(50);
+        assertEquals(50, thief.getHealthValue());
     }
 }
-

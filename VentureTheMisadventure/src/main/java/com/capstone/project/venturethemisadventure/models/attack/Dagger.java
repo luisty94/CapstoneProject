@@ -2,7 +2,11 @@ package com.capstone.project.venturethemisadventure.models.attack;
 
 import com.capstone.project.venturethemisadventure.models.Character;
 
-public class Dagger implements IAttack{
+import javax.persistence.Entity;
+
+@Entity
+public class Dagger extends IAttack{
+
 
 
     public void attack(Character character) {

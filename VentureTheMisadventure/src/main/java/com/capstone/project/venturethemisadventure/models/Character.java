@@ -2,12 +2,27 @@ package com.capstone.project.venturethemisadventure.models;
 
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 
+import javax.persistence.*;
+
+@Entity
 public abstract class Character {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "health")
     private int healthValue;
-    private IAttack weapon;
+
+    @Column(name = "speed")
     private int speed;
+
+    @ManyToOne
+    @JoinColumn(name = "weapon_id", nullable = false)
+    private IAttack weapon;
 
     public Character(String name, int healthValue, IAttack weapon, int speed) {
         this.name = name;
@@ -16,6 +31,13 @@ public abstract class Character {
         this.speed = speed;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

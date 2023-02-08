@@ -28,7 +28,7 @@ public class WarriorTest {
     public void before() {
         dagger = new Dagger();
         sword = new Sword();
-        goblin = new Goblin("Ungo", 70, 90);
+        goblin = new Goblin("Ungo", 70, dagger,90);
         warrior = new Warrior("Brutus",350, 150);
     }
 
