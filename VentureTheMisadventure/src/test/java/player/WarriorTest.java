@@ -1,18 +1,20 @@
 package player;
 
-import models.attack.Dagger;
-import models.attack.IAttack;
-import models.enemies.Goblin;
-import models.player.Player;
-import models.player.classes.ClassType;
-import models.player.classes.Hero;
-import models.player.classes.Warrior;
+import com.capstone.project.venturethemisadventure.models.attack.Dagger;
+import com.capstone.project.venturethemisadventure.models.attack.IAttack;
+import com.capstone.project.venturethemisadventure.models.attack.Sword;
+import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
+import com.capstone.project.venturethemisadventure.models.player.Player;
+import com.capstone.project.venturethemisadventure.models.player.classes.ClassType;
+import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
+import com.capstone.project.venturethemisadventure.models.player.classes.Warrior;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HeroTest {
+
+public class WarriorTest {
 
     Goblin goblin;
     Hero hero;
@@ -25,37 +27,40 @@ public class HeroTest {
     @Before
     public void before() {
         dagger = new Dagger();
+        sword = new Sword();
         goblin = new Goblin("Ungo", 70, 90);
-        player = new Player("Ferghus",ClassType.HERO,250, sword, 100);
-        hero = new Hero("The Hero", 500, sword, 200);
         warrior = new Warrior("Brutus",350, 150);
     }
 
     @Test
     public void hasName() {
-        assertEquals("Ferghus", player.getName());
+        assertEquals("Brutus", warrior.getName());
     }
 
     @Test
     public void hasHealthValue() {
-        assertEquals(70, goblin.getHealthValue());
+        assertEquals(350, warrior.getHealthValue());
     }
 
     @Test
     public void hasSpeed() {
         assertEquals(90, goblin.getSpeed());
     }
+    @Test
+    public void hasType(){
+        assertEquals(ClassType.WARRIOR, warrior.getType());
+    }
 
     @Test
-    public void canAttack() {
-        goblin.attack(player);
-        assertEquals(230, player.getHealthValue());
+    public void canAttack(){
+        warrior.attack(goblin);
+        assertEquals(20, goblin.getHealthValue());
     }
 
     @Test
     public void canTakeDamage(){
-        goblin.takeDamage(20);
-        assertEquals(50, goblin.getHealthValue());
+        warrior.takeDamage(100);
+        assertEquals(250, warrior.getHealthValue());
     }
 }
 

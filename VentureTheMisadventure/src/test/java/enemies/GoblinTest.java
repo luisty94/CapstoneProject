@@ -1,13 +1,12 @@
 package enemies;
 
+import com.capstone.project.venturethemisadventure.models.attack.Dagger;
+import com.capstone.project.venturethemisadventure.models.attack.IAttack;
+import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
+import com.capstone.project.venturethemisadventure.models.player.Player;
+import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import org.junit.Before;
 import org.junit.Test;
-import player.Player;
-import player.attack.Dagger;
-import player.attack.IAttack;
-import player.attack.Sword;
-import player.classes.ClassType;
-import player.classes.Hero;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,11 +19,11 @@ public class GoblinTest {
     Player player;
 
 
-    @Before
+    @Before()
     public void before() {
         dagger = new Dagger();
         goblin = new Goblin("Ungo", 70, 90);
-        player = new Player("The Hero", ClassType.HERO, 250, sword, 100);
+        hero = new Hero("Ferghus",250, sword, 100);
     }
 
     @Test
@@ -44,8 +43,8 @@ public class GoblinTest {
 
     @Test
     public void canAttack() {
-        goblin.attack(player);
-        assertEquals(230, player.getHealthValue());
+        goblin.attack(hero);
+        assertEquals(230, hero.getHealthValue());
     }
 
     @Test
