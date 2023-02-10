@@ -11,6 +11,6 @@ import java.util.List;
 public class Sword extends IAttack {
 
     public void attack(Character character) {
-        character.takeDamage(50);
+        character.takeDamage(30);
     }
 }

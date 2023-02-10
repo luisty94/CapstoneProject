@@ -6,7 +6,7 @@ import com.capstone.project.venturethemisadventure.models.enemies.Enemy;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import com.capstone.project.venturethemisadventure.repositories.EnemyRepository;
-import com.capstone.project.venturethemisadventure.repositories.HeroRepository;
+import com.capstone.project.venturethemisadventure.repositories.PlayerRepository;
 import com.capstone.project.venturethemisadventure.repositories.IAttackRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class VenturethemisadventureApplicationTests {
 
 	@Autowired
-	HeroRepository heroRepository;
+	PlayerRepository playerRepository;
 	@Autowired
 	IAttackRepository iAttackRepository;
 
@@ -38,7 +38,7 @@ public class VenturethemisadventureApplicationTests {
 		iAttackRepository.save(sword);
 		Hero trial = new Hero("ABC", 200, sword, 200);
 		System.out.println(trial.getName());
-		heroRepository.save(trial);
+		playerRepository.save(trial);
 
 	}
 

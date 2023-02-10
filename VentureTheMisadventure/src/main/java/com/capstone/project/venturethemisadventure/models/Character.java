@@ -5,6 +5,9 @@ import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Character")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "TYPE")
 public abstract class Character {
 
     @Id

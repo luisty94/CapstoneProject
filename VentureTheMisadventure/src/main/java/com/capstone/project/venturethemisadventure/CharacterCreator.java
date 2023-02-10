@@ -10,8 +10,14 @@ public class CharacterCreator {
         System.out.println("Name your Hero");
         userName = myObj.nextLine();
 
-        System.out.println("You are " + userName);
+        Scanner myClass = new Scanner(System.in);
+        String userClass;
 
+        System.out.println("Choose your Class");
 
+        userClass = myClass.nextLine();
+
+        System.out.println("You are " + userName + " and you are a " + userClass);
     }
+
 }

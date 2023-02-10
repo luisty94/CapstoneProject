@@ -3,7 +3,6 @@ package player;
 import com.capstone.project.venturethemisadventure.models.attack.Dagger;
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
-import com.capstone.project.venturethemisadventure.models.player.classes.ClassType;
 import com.capstone.project.venturethemisadventure.models.player.classes.Thief;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +20,7 @@ public class ThiefTest {
     public void before() {
         dagger = new Dagger();
         goblin = new Goblin("Ungo", 70, dagger,90);
-        thief = new Thief("Shadow", 100, 300);
+        thief = new Thief("Shadow", 100, dagger, 300);
     }
 
     @Test
@@ -33,10 +32,7 @@ public class ThiefTest {
     public void hasHealthValue() {
         assertEquals(100, thief.getHealthValue());
     }
-    @Test
-    public void hasType(){
-        assertEquals(ClassType.THIEF, thief.getType());
-    }
+
     @Test
     public void hasSpeed() {
         assertEquals(300, thief.getSpeed());

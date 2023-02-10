@@ -5,7 +5,6 @@ import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 import com.capstone.project.venturethemisadventure.models.attack.Sword;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
 import com.capstone.project.venturethemisadventure.models.player.Player;
-import com.capstone.project.venturethemisadventure.models.player.classes.ClassType;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import com.capstone.project.venturethemisadventure.models.player.classes.Warrior;
 import org.junit.Before;
@@ -29,7 +28,7 @@ public class WarriorTest {
         dagger = new Dagger();
         sword = new Sword();
         goblin = new Goblin("Ungo", 70, dagger,90);
-        warrior = new Warrior("Brutus",350, 150);
+        warrior = new Warrior("Brutus",350, sword, 100);
     }
 
     @Test
@@ -44,17 +43,14 @@ public class WarriorTest {
 
     @Test
     public void hasSpeed() {
-        assertEquals(90, goblin.getSpeed());
+        assertEquals(100, warrior.getSpeed());
     }
-    @Test
-    public void hasType(){
-        assertEquals(ClassType.WARRIOR, warrior.getType());
-    }
+
 
     @Test
     public void canAttack(){
         warrior.attack(goblin);
-        assertEquals(20, goblin.getHealthValue());
+        assertEquals(10, goblin.getHealthValue());
     }
 
     @Test

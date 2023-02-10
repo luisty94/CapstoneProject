@@ -5,7 +5,6 @@ import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 import com.capstone.project.venturethemisadventure.models.attack.Sword;
 import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
 import com.capstone.project.venturethemisadventure.models.player.Player;
-import com.capstone.project.venturethemisadventure.models.player.classes.ClassType;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,10 +38,7 @@ public class HeroTest {
     public void hasHealthValue() {
         assertEquals(200, hero.getHealthValue());
     }
-    @Test
-    public void hasType(){
-        assertEquals(ClassType.HERO, hero.getType());
-    }
+
     @Test
     public void hasSpeed() {
         assertEquals(200, hero.getSpeed());
@@ -51,7 +47,7 @@ public class HeroTest {
     @Test
     public void canAttack() {
         hero.attack(goblin);
-        assertEquals(20, goblin.getHealthValue());
+        assertEquals(40, goblin.getHealthValue());
     }
 
     @Test

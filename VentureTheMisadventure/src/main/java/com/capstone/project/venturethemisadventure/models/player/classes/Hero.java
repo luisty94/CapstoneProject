@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Hero extends Player {
 
     public Hero(String name, int healthValue, IAttack weapon, int speed) {
-        super(name, ClassType.HERO ,healthValue, weapon, speed);
+        super(name,healthValue, weapon, speed);
     }
 
     public void attack (Character enemy){
