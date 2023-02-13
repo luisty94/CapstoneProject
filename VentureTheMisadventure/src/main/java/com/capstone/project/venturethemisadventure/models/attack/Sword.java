@@ -11,4 +11,5 @@ public class Sword extends Weapon {
         super(30);
     }
 
+
 }

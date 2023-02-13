@@ -25,6 +25,8 @@ public abstract class Weapon {
         this.damage = damage;
     }
 
+    public Weapon(){}
+
     public Long getId() {
         return id;
     }

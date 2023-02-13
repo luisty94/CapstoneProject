@@ -34,6 +34,8 @@ public class Enemy implements ITakeDamage {
         this.speed = speed;
     }
 
+    public Enemy(){}
+
     public Long getId() {
         return id;
     }

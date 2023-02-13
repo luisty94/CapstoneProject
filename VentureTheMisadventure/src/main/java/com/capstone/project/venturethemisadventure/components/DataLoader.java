@@ -1,7 +1,9 @@
 package com.capstone.project.venturethemisadventure.components;
 
+import com.capstone.project.venturethemisadventure.models.Character;
 import com.capstone.project.venturethemisadventure.models.attack.*;
 import com.capstone.project.venturethemisadventure.models.enemies.Enemy;
+import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import com.capstone.project.venturethemisadventure.repositories.CharacterRepository;
 import com.capstone.project.venturethemisadventure.repositories.EnemyRepository;
 import com.capstone.project.venturethemisadventure.repositories.WeaponRepository;
@@ -51,7 +53,7 @@ public class DataLoader implements ApplicationRunner {
         Enemy kobold = new Enemy("Sir Reginald Frost III", 10, fist, 500);
         enemyRepository.save(kobold);
 
-
-
+        Character luis = new Hero("Luis", 200, sword, 200);
+        characterRepository.save(luis);
     }
 }

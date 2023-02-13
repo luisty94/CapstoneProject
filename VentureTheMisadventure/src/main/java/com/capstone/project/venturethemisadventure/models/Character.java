@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "characters")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "CHARACTER_TYPE")
 public abstract class Character implements ITakeDamage, IAttack {
 
     @Id
@@ -32,6 +34,9 @@ public abstract class Character implements ITakeDamage, IAttack {
         this.healthValue = healthValue;
         this.weapon = weapon;
         this.speed = speed;
+    }
+
+    public Character(){
     }
 
     public Long getId() {
