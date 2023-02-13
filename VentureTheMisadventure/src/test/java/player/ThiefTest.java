@@ -1,8 +1,8 @@
 package player;
 
 import com.capstone.project.venturethemisadventure.models.attack.Dagger;
-import com.capstone.project.venturethemisadventure.models.attack.IAttack;
-import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
+import com.capstone.project.venturethemisadventure.models.attack.Weapon;
+import com.capstone.project.venturethemisadventure.models.enemies.Enemy;
 import com.capstone.project.venturethemisadventure.models.player.classes.Thief;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,15 +11,15 @@ import static org.junit.Assert.assertEquals;
 
 public class ThiefTest {
     Thief thief;
-    Goblin goblin;
-    IAttack dagger;
-    IAttack sword;
+    Enemy goblin;
+    Weapon dagger;
+    Weapon sword;
 
 
     @Before
     public void before() {
         dagger = new Dagger();
-        goblin = new Goblin("Ungo", 70, dagger,90);
+        goblin = new Enemy("Ungo", 70, dagger,90);
         thief = new Thief("Shadow", 100, dagger, 300);
     }
 

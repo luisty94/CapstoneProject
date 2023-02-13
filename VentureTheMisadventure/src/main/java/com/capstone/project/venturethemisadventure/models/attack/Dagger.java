@@ -5,11 +5,8 @@ import com.capstone.project.venturethemisadventure.models.Character;
 import javax.persistence.Entity;
 
 @Entity
-public class Dagger extends IAttack{
-
-
-
-    public void attack(Character character) {
-        character.takeDamage(20);
+public class Dagger extends Weapon {
+    public Dagger() {
+        super(20);
     }
 }

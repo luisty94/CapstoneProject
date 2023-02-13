@@ -1,18 +1,17 @@
 package com.capstone.project.venturethemisadventure.models.player.classes;
 
 import com.capstone.project.venturethemisadventure.models.Character;
-import com.capstone.project.venturethemisadventure.models.attack.Dagger;
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
-import com.capstone.project.venturethemisadventure.models.player.Player;
+import com.capstone.project.venturethemisadventure.models.attack.ITakeDamage;
+import com.capstone.project.venturethemisadventure.models.attack.Weapon;
 
-public class Thief extends Player {
+public class Thief extends Character {
 
-    public Thief(String name, int healthValue, IAttack weapon, int speed) {
+    public Thief(String name, int healthValue, Weapon weapon, int speed) {
         super(name, healthValue, weapon, speed);
     }
-    public void attack (Character enemy){
-        getWeapon().attack(enemy);
-        getWeapon().attack(enemy);
-
+    public void attack (ITakeDamage enemy){
+        super.attack(enemy);
+        super.attack(enemy);
     }
 }

@@ -5,9 +5,9 @@ import com.capstone.project.venturethemisadventure.models.Character;
 import javax.persistence.Entity;
 
 @Entity
-public class Staff extends IAttack{
-
-    public void attack(Character character) {
-        character.takeDamage(15);
+public class Club extends Weapon {
+    public Club() {
+        super(50);
     }
+
 }

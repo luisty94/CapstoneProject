@@ -1,14 +1,14 @@
 package com.capstone.project.venturethemisadventure.models;
 
 import com.capstone.project.venturethemisadventure.models.attack.IAttack;
+import com.capstone.project.venturethemisadventure.models.attack.ITakeDamage;
+import com.capstone.project.venturethemisadventure.models.attack.Weapon;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Character")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "TYPE")
-public abstract class Character {
+@Table(name = "characters")
+public abstract class Character implements ITakeDamage, IAttack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +25,9 @@ public abstract class Character {
 
     @ManyToOne
     @JoinColumn(name = "weapon_id", nullable = false)
-    private IAttack weapon;
+    private Weapon weapon;
 
-    public Character(String name, int healthValue, IAttack weapon, int speed) {
+    public Character(String name, int healthValue, Weapon weapon, int speed) {
         this.name = name;
         this.healthValue = healthValue;
         this.weapon = weapon;
@@ -57,11 +57,11 @@ public abstract class Character {
         this.healthValue = healthValue;
     }
 
-    public IAttack getWeapon() {
+    public Weapon getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(IAttack weapon) {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
@@ -75,8 +75,8 @@ public abstract class Character {
     public void takeDamage(int damage){
         this.healthValue -= damage;
     }
-    public void attack(Character character, IAttack weapon){
-        weapon.attack(character);
+    public void attack(ITakeDamage enemy){
+        enemy.takeDamage(this.weapon.getDamage());
     }
 
 }

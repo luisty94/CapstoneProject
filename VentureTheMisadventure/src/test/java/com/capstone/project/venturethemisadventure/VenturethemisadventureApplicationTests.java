@@ -3,11 +3,10 @@ package com.capstone.project.venturethemisadventure;
 import com.capstone.project.venturethemisadventure.models.attack.Dagger;
 import com.capstone.project.venturethemisadventure.models.attack.Sword;
 import com.capstone.project.venturethemisadventure.models.enemies.Enemy;
-import com.capstone.project.venturethemisadventure.models.enemies.Goblin;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
+import com.capstone.project.venturethemisadventure.repositories.CharacterRepository;
 import com.capstone.project.venturethemisadventure.repositories.EnemyRepository;
-import com.capstone.project.venturethemisadventure.repositories.PlayerRepository;
-import com.capstone.project.venturethemisadventure.repositories.IAttackRepository;
+import com.capstone.project.venturethemisadventure.repositories.WeaponRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class VenturethemisadventureApplicationTests {
 
 	@Autowired
-	PlayerRepository playerRepository;
+	CharacterRepository playerRepository;
 	@Autowired
-	IAttackRepository iAttackRepository;
+	WeaponRepository iAttackRepository;
 
 	@Autowired
 	EnemyRepository enemyRepository;
@@ -46,7 +45,7 @@ public class VenturethemisadventureApplicationTests {
 	public void createEnemy(){
 		Dagger dagger = new Dagger();
 		iAttackRepository.save(dagger);
-		Enemy trial2 = new Goblin("Malcom", 200,dagger,100);
+		Enemy trial2 = new Enemy("Malcom", 200,dagger,100);
 		enemyRepository.save(trial2);
 	}
 
