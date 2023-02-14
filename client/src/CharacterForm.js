@@ -20,7 +20,7 @@ const StyledForm = styled.form`
     }
 `;
 
-const CharacterForm = ({ addCharacter,  }) => {
+const CharacterForm = ({ addCharacter, setActiveCharacter}) => {
     const [formData, setFormData] = useState({
         character_type:"HERO",
         name: ""
@@ -50,12 +50,8 @@ const CharacterForm = ({ addCharacter,  }) => {
         postCharacter(formData)
             .then((data) => {
                 addCharacter(data);
+                setActiveCharacter(data);
             })
-        /* reset the form */
-        setFormData({
-            character_type:"",
-            name: ""
-        })
     };
 
     return (

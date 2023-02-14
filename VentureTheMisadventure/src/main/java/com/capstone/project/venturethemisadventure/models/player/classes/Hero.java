@@ -12,6 +12,7 @@ public class Hero extends Character {
 
     public Hero(String name, int healthValue, Weapon weapon, int speed) {
         super(name, healthValue, weapon, speed);
+        setType("HERO");
     }
 
     public Hero(){

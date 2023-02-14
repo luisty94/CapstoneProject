@@ -16,6 +16,9 @@ public abstract class Character implements ITakeDamage, IAttack {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "name")
     private String name;
 
@@ -37,6 +40,14 @@ public abstract class Character implements ITakeDamage, IAttack {
     }
 
     public Character(){
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Long getId() {

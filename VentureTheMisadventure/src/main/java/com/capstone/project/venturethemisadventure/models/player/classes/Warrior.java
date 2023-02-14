@@ -14,6 +14,7 @@ public class Warrior extends Character {
 
     public Warrior(String name, int healthValue, Weapon weapon, int speed) {
         super(name,healthValue, weapon, speed);
+        setType("WARRIOR");
     }
 
     public Warrior(){}

@@ -21,6 +21,9 @@ function App() {
 
 const [characters, setCharacters] = useState([]);
 
+  const [activeCharacter, setActiveCharacter] =useState(null);
+  
+
   useEffect( () => {
     //fetch /characters
     fetch("http://192.168.100.46:8080/characters")
@@ -41,7 +44,8 @@ const [characters, setCharacters] = useState([]);
   return <>
   <ThemeProvider theme={theme}>
       <Title>Character Creator</Title>
-      <CharacterForm addCharacter={addCharacter} />
+      <CharacterForm addCharacter={addCharacter}
+      setActiveCharacter = {setActiveCharacter} />
   </ThemeProvider>
 </>
 }

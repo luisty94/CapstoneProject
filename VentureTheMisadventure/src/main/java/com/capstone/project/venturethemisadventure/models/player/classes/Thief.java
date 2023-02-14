@@ -15,6 +15,7 @@ public class Thief extends Character {
 
     public Thief(String name, int healthValue, Weapon weapon, int speed) {
         super(name, healthValue, weapon, speed);
+        setType("THIEF");
     }
 
     public Thief(){
