@@ -20,9 +20,9 @@ const StyledForm = styled.form`
     }
 `;
 
-const CharacterForm = ({ addCharacter }) => {
+const CharacterForm = ({ addCharacter,  }) => {
     const [formData, setFormData] = useState({
-        character_type:"",
+        character_type:"HERO",
         name: ""
 
     });
@@ -34,14 +34,19 @@ const CharacterForm = ({ addCharacter }) => {
         setFormData(newFormData);
     };
 
+    const handleChange = (event) => {
+        const newFormData = Object.assign({}, formData);
+        newFormData["character_type"] = event.target.value;
+        setFormData(newFormData);
+    }
+
     const onSubmit = (event) => {
         event.preventDefault();
 
-        if (!formData.name)
+        if (!formData.character_type || !formData.name){
+            setErrorMessage("Adventurer?");
             return;
-
-        setErrorMessage("Adventurer?");
-
+        }
         postCharacter(formData)
             .then((data) => {
                 addCharacter(data);
@@ -59,6 +64,14 @@ const CharacterForm = ({ addCharacter }) => {
 
             <ErrorMessage>{errorMessage}</ErrorMessage>
 
+            <FormWrap>
+                <label htmlFor="character_type">Class:</label>
+                <select onChange={handleChange}>
+                    <option>HERO</option>
+                    <option>THIEF</option>
+                    <option>WARRIOR</option>
+                </select>
+            </FormWrap>
             <FormWrap>
                 <label htmlFor="name">Name:</label>
                 <input
