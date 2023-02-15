@@ -82,4 +82,5 @@ public class Enemy implements ITakeDamage {
     public void attack(ITakeDamage character){
         character.takeDamage(this.weapon.getDamage());
     }
+
 }

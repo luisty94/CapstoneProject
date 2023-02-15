@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Button } from '../components/styles';
 import PreCombatScreen from "./PreCombatScreen";
+import { postHeal } from "../CharacterService";
 
 
 const StyledForm = styled.form`
@@ -25,14 +26,28 @@ const theme = {
     checkedOutColor: 'white',
 };
 
-const SuccessScreen = ({stage, startPreCombat}) => {
+const SuccessScreen = ({stage, startPreCombat, activeCharacter, setActiveCharacter}) => {
 
 
     const navClick = (event) => {
         event.preventDefault();
 
-        startPreCombat()
+
+        const characterObj = {
+            characterId: activeCharacter.id
+        }       
+        postHeal(characterObj).then((res) => {
+
+            setActiveCharacter({
+                ...activeCharacter,
+                healthValue: res.healthValue
+            })
+            startPreCombat()
+            }
+        ); 
+
     }
+    
 
     return (
         <ThemeProvider theme={theme}>

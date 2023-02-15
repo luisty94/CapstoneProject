@@ -14,8 +14,10 @@ public class Hero extends Character {
         super(name, healthValue, weapon, speed);
         setType("HERO");
     }
-
     public Hero(){
+    }
+    public void heal(){
+        this.setHealthValue(200);
     }
 
 }

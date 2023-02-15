@@ -77,4 +77,12 @@ public class CharacterController {
         enemyRepository.save(enemy);
         return new ResponseEntity<>(enemy, HttpStatus.OK);
     }
+    @PostMapping(value = "/characters/heal")
+    public ResponseEntity<Character> postHeal(@RequestBody HashMap<String, Long> characterObj) {
+        Character character = characterRepository.findById(characterObj.get("characterId")).get();
+        character.heal();
+        characterRepository.save(character);
+        return new ResponseEntity<>(character, HttpStatus.OK);
+
+    }
 }

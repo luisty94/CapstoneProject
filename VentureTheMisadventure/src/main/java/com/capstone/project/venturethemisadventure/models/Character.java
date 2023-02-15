@@ -95,4 +95,7 @@ public abstract class Character implements ITakeDamage, IAttack {
         enemy.takeDamage(this.weapon.getDamage());
     }
 
+    public void heal(){
+        this.healthValue = 500;
+    }
 }

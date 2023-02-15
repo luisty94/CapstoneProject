@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Button } from '../components/styles';
 import { postAttack } from "../CharacterService";
 import {updateEnemy} from "../containers/GameLogic"
+import { postEnemyAttack } from "../EnemyService";
 
 const StyledForm = styled.form`
     border-bottom: 1px solid black;
@@ -43,6 +44,13 @@ const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActi
         postAttack(attackObj).then((res) => {
 
             setActiveEnemy(res)
+            if (res.healthValue <= 0) {
+                nextStage("Success")
+            }
+        })
+        postEnemyAttack(attackObj).then((res) => {
+
+            setActiveCharacter(res)
             if (res.healthValue <= 0) {
                 nextStage("Success")
             }

@@ -23,4 +23,8 @@ public class Warrior extends Character {
             super.attack(enemy);
             super.attack(enemy);
         }
+
+    public void heal(){
+        this.setHealthValue(350);
+    }
 }
