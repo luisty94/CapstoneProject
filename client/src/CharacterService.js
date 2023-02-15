@@ -12,4 +12,13 @@ export const postCharacter = (payload) => {
             headers: { 'Content-Type': 'application/json' }
         })
         .then(res => res.json())
+    }
+
+export const postAttack = (payload) => {
+    return fetch(baseURL + "combat", {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
 }

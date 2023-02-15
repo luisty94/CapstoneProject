@@ -1,0 +1,73 @@
+import React from "react";
+import styled, { ThemeProvider } from 'styled-components';
+import { Button } from '../components/styles';
+import { postAttack } from "../CharacterService";
+import {updateEnemy} from "../containers/GameLogic"
+
+const StyledForm = styled.form`
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    > * {
+        margin: 0;
+    }
+`;
+const Title = styled.h1`
+    text-align: center;
+`;
+
+const theme = {
+    headerColour: '#e5feff',
+    checkedInColour: 'rgb(104 185 255 / 50%)',
+    checkedOutColor: 'white',
+};
+
+
+const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActiveEnemy, nextStage}) => {
+    const characterHealth = {...activeCharacter}
+    const enemyHealth = {...activeEnemy}
+
+
+    const attackButton = (event) => {
+        event.preventDefault();
+        
+        console.log(event.target.characterId.value);
+
+        const attackObj = {
+            characterId: event.target.characterId.value,
+            enemyId: event.target.enemyId.value
+        }
+
+        postAttack(attackObj).then((res) => {
+
+            setActiveEnemy(res)
+            if (res.healthValue <= 0) {
+                nextStage("Success")
+            }
+        })
+       
+    }
+
+    
+    return (
+        <ThemeProvider theme={theme}>
+            <Title>COMBAT SCREEN</Title>
+
+            <StyledForm onSubmit={attackButton}>
+                <input type="hidden" name="characterId" value={activeCharacter.id} />
+                <input type="hidden" name="enemyId" value={activeEnemy.id} />
+                <h1>Character : {activeCharacter.name}</h1>
+                <h1>Health : {activeCharacter.healthValue}</h1>
+
+                <h1>Enemy : {activeEnemy.name}</h1>
+                <h1>Health : {activeEnemy.healthValue}</h1>
+           
+                <Button type="submit">ATTACK</Button>
+            </StyledForm> 
+        </ThemeProvider>
+    );
+};
+
+export default CombatScreen

@@ -1,53 +1,36 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import styled, { ThemeProvider } from 'styled-components';
-
-import CharacterForm from './CharacterForm';
-import { getAllCharacters } from './CharacterService';
-
-const Title = styled.h1`
-    text-align: center;
-`;
-
-const theme = {
-    headerColour: '#e5feff',
-    checkedInColour: 'rgb(104 185 255 / 50%)',
-    checkedOutColor: 'white',
-};
+import { createGlobalStyle } from 'styled-components';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import GameLogic from './containers/GameLogic';
+import React from 'react';
 
 
 function App() {
-
-
-const [characters, setCharacters] = useState([]);
-
-  const [activeCharacter, setActiveCharacter] =useState(null);
   
-
-  useEffect( () => {
-    //fetch /characters
-    fetch("http://192.168.100.46:8080/characters")
-      .then(res=> res.json())
-      .then(data=> setCharacters(data));
-  }, [])
-
-  const characterItems = characters.map((character) => {
-    return <li key={character.id}>{character.name}</li>
-  })
-
-
-  const addCharacter = (character) => {
-      const newCharacters = [...characters, character];
-      setCharacters(newCharacters)
-  };
-  
-  return <>
-  <ThemeProvider theme={theme}>
-      <Title>Character Creator</Title>
-      <CharacterForm addCharacter={addCharacter}
-      setActiveCharacter = {setActiveCharacter} />
-  </ThemeProvider>
-</>
+  return (
+    <Main>
+      <GlobalStyle/>
+      <Router>
+        <Routes>
+          <Route path="/" element={< GameLogic />} />
+        </Routes>
+      </Router>
+    </Main>
+  )
 }
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: black;
+  }
+`
+
+const Main = styled.div`
+`
+
 
 export default App;
