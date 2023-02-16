@@ -4,6 +4,11 @@ import { Button } from '../components/styles';
 import { postAttack } from "../CharacterService";
 import {updateEnemy} from "../containers/GameLogic"
 import { postEnemyAttack } from "../EnemyService";
+import ContainerBox from "../components/ContainerBox";
+import Title from "../components/Title";
+import TextBox from "../components/TextBox";
+
+
 
 const StyledForm = styled.form`
     border-bottom: 1px solid black;
@@ -15,18 +20,11 @@ const StyledForm = styled.form`
         margin: 0;
     }
 `;
-const Title = styled.h1`
-    text-align: center;
-`;
-
-const theme = {
-    headerColour: '#e5feff',
-    checkedInColour: 'rgb(104 185 255 / 50%)',
-    checkedOutColor: 'white',
-};
 
 
-const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActiveEnemy, nextStage}) => {
+
+
+const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActiveEnemy, nextStage, }) => {
     const characterHealth = {...activeCharacter}
     const enemyHealth = {...activeEnemy}
 
@@ -35,7 +33,10 @@ const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActi
         event.preventDefault();
         
         console.log(event.target.characterId.value);
-
+       
+        if (activeEnemy = ""){
+            nextStage("End")}
+        else{
         const attackObj = {
             characterId: event.target.characterId.value,
             enemyId: event.target.enemyId.value
@@ -48,21 +49,23 @@ const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActi
                 nextStage("Success")
             }
         })
+    
         postEnemyAttack(attackObj).then((res) => {
 
             setActiveCharacter(res)
             if (res.healthValue <= 0) {
-                nextStage("Success")
+                nextStage("Retreat")
             }
         })
        
     }
+    
+}
 
     
     return (
-        <ThemeProvider theme={theme}>
+        <ContainerBox>
             <Title>COMBAT SCREEN</Title>
-
             <StyledForm onSubmit={attackButton}>
                 <input type="hidden" name="characterId" value={activeCharacter.id} />
                 <input type="hidden" name="enemyId" value={activeEnemy.id} />
@@ -74,8 +77,10 @@ const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActi
            
                 <Button type="submit">ATTACK</Button>
             </StyledForm> 
-        </ThemeProvider>
+        </ContainerBox>
     );
 };
+
+
 
 export default CombatScreen

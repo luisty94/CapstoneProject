@@ -4,23 +4,21 @@ import styled from "styled-components";
 import Title from "../components/Title";
 import TextBox from "../components/TextBox";
 import Button from "../components/Button";
-import StartBackground from "../components/StartBackground";
 
-const StartScreen = ({nextStage, updateBackground}) => {
+const EndScreen = ({nextStage}) => {
 
     const onStartClick = () => {
 
-        nextStage("Creator");
+        nextStage("Start");
     }
 
 
     return (
         <ContainerBox>
-            <StartBackground updateBackground={updateBackground} />
-            <Title>Aventure the MisAdventure</Title>
-            <TextBox>Luis Trigo</TextBox>
+            <Title>CONGRATULATIONS</Title>
+            <TextBox>You have cleaned the forest from its filthy creatures</TextBox>
             <StartMenu>
-                <Button onClick={onStartClick}>New Game</Button>
+                <Button onClick={onStartClick}>Try Again</Button>
             </StartMenu>
             
         </ContainerBox>
@@ -39,4 +37,4 @@ const StartMenu = styled.div`
     }
 `
 
-export default StartScreen;
+export default EndScreen;

@@ -2,9 +2,13 @@ import { useState } from 'react';
 import {postCharacter} from '../CharacterService';
 import styled, { ThemeProvider } from 'styled-components';
 import React from 'react';
+import ContainerBox from '../components/ContainerBox';
+import Input from '../components/Input';
+import Button from '../components/Button';
+import TextBox from '../components/TextBox';
+import Title from '../components/Title';
 
-
-import { ErrorMessage, Button } from '../components/styles';
+import { ErrorMessage } from '../components/styles';
 
 const FormWrap = styled.div`
     display: grid;
@@ -21,15 +25,6 @@ const StyledForm = styled.form`
         margin: 0;
     }
 `;
-const Title = styled.h1`
-    text-align: center;
-`;
-
-const theme = {
-    headerColour: '#e5feff',
-    checkedInColour: 'rgb(104 185 255 / 50%)',
-    checkedOutColor: 'white',
-};
 
 const CharacterForm = ({ addCharacter, setActiveCharacter, nextStage}) => {
     
@@ -52,7 +47,7 @@ const CharacterForm = ({ addCharacter, setActiveCharacter, nextStage}) => {
         setFormData(newFormData);
     }
 
-    const onSubmit = (event) => {
+    const onStartClick = (event) => {
         event.preventDefault();
 
         if (!formData.character_type || !formData.name){
@@ -70,11 +65,11 @@ const CharacterForm = ({ addCharacter, setActiveCharacter, nextStage}) => {
     
 
     return (
-        <ThemeProvider theme={theme}>
+        <ContainerBox>
             <Title>Character Creator</Title>
     
-            <StyledForm onSubmit={onSubmit}>
-                <h2>Choose your path</h2>
+            <StartMenu>
+                <TextBox>Choose your path</TextBox>
 
                 <ErrorMessage>{errorMessage}</ErrorMessage>
 
@@ -98,10 +93,22 @@ const CharacterForm = ({ addCharacter, setActiveCharacter, nextStage}) => {
                 </FormWrap>
 
                 {/* <input type="submit" value="Save" id="save" /> */}
-                <Button type="submit">Save</Button>
-            </StyledForm> 
-        </ThemeProvider>
+                <Button onClick={onStartClick}>Save</Button>
+            </StartMenu> 
+        </ContainerBox>
     );
 }
+
+const StartMenu = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+
+    button {
+        width: 10rem;
+    }
+`
 
 export default CharacterForm;

@@ -11,9 +11,7 @@ const StyledForm = styled.form`
     border-bottom: 1px solid black;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    align-items: center;
-
+    gap: 2rem;
 
     > * {
         margin: 0;
@@ -29,7 +27,7 @@ const theme = {
     checkedOutColor: 'white',
 };
 
-const SuccessScreen = ({stage, startEndStage, activeCharacter, setActiveCharacter}) => {
+const RetreatScreen = ({stage, startPreCombat, activeCharacter, setActiveCharacter}) => {
 
 
     const navClick = (event) => {
@@ -45,7 +43,7 @@ const SuccessScreen = ({stage, startEndStage, activeCharacter, setActiveCharacte
                 ...activeCharacter,
                 healthValue: res.healthValue
             })
-            startEndStage()
+            startPreCombat()
             }
         ); 
 
@@ -57,10 +55,10 @@ const SuccessScreen = ({stage, startEndStage, activeCharacter, setActiveCharacte
             <Title>Combat Result</Title>
     
             <StyledForm onSubmit={navClick}>
-                <h2>You have slain that filthy creature</h2>
+                <h2>RUN FOR YOUR LIFE!</h2>
                 <Button type="submit">Continue Your Adventure</Button>
             </StyledForm> 
         </ContainerBox>
     );
 };
-export default SuccessScreen
+export default RetreatScreen

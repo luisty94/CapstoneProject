@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Button } from '../components/styles';
+import ContainerBox from "../components/ContainerBox";
 
 
 const StyledForm = styled.form`
@@ -9,6 +10,10 @@ const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+
+
 
     > * {
         margin: 0;
@@ -34,14 +39,14 @@ const PreCombatScreen = ({stage, startCombatA}) => {
     }
 
     return (
-        <ThemeProvider theme={theme}>
+        <ContainerBox>
             <Title>Boku Boku Forest</Title>
     
             <StyledForm onSubmit={nextCombatClick}>
-                <h2>A smelly creature approaches! Are you ready to fight?</h2>
+                <h2>A smelly creature approaches! Are you ready?</h2>
                 <Button type="submit">FIGHT!</Button>
             </StyledForm> 
-        </ThemeProvider>
+        </ContainerBox>
     );
 };
 export default PreCombatScreen

@@ -7,21 +7,23 @@ import PreCombatScreen from './PreCombatScreen';
 import CombatScreen from './CombatScreen';
 import SuccessScreen from './SuccessScreen';
 import StartScreen from './StartScreen';
+import RetreatScreen from './RetreatScreen';
+import EndScreen from './EndScreen';
+import { getAllEnemies } from '../EnemyService';
 
-
-const GameLogic = () => {
+const GameLogic = ({updateBackground}) => {
 
     const [stage, changeStage] = useState("Start");
     const [characters, setCharacters] = useState([]);
     const [activeCharacter, setActiveCharacter] =useState(null);
     const [activeEnemy, setActiveEnemy] =useState(null);
     const [enemies, setEnemies] = useState([]);
-    
+    const [stageQuestions, setStageQuestions] = useState([]);
+
 
 
 
     const nextStage = (stage) => {
-
         changeStage(stage);
     }
 
@@ -35,8 +37,16 @@ const GameLogic = () => {
         nextStage("CombatA")
     }
 
+
     const startPreCombat = () => {
         nextStage("PreCombat")
+    }
+
+    const startEndStage = () => {
+        // if (enemies.find(enemy => enemy.healthValue > 0).Length == 0)
+        nextStage("End")
+        // else
+        // nextStage("PreCombat")
     }
     
 
@@ -67,7 +77,7 @@ const GameLogic = () => {
     return (
         <>
         {stage === "Start" ?
-        <StartScreen nextStage={nextStage} startCharacterCreator={startCharacterCreator}/> : ""}
+        <StartScreen nextStage={nextStage} startCharacterCreator={startCharacterCreator}  updateBackground={updateBackground} /> : ""}
         {stage === "Creator" ? 
         <CharacterForm users={characters} nextStage={nextStage} addCharacter={addCharacter} setActiveCharacter = {setActiveCharacter} />  : ""}
         {stage === "PreCombat" ? 
@@ -75,7 +85,12 @@ const GameLogic = () => {
         {stage === "CombatA" ?
         <CombatScreen activeCharacter={activeCharacter} activeEnemy={activeEnemy} setActiveEnemy = {setActiveEnemy} setActiveCharacter = {setActiveCharacter} nextStage = {nextStage}/> : ""}
         {stage === "Success" ?
-        <SuccessScreen startPreCombat={startPreCombat} activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter}/> : ""}
+        <SuccessScreen startPreCombat={startPreCombat} activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter} startEndStage = {startEndStage}/>  : ""}
+        {stage === "Retreat" ?
+        <RetreatScreen startPreCombat={startPreCombat} activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter}/> : ""}
+        {stage === "End" ?
+        <EndScreen nextStage={nextStage}/> : ""}
+        
     </>
     );
 

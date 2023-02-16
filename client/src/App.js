@@ -8,13 +8,19 @@ import React from 'react';
 
 
 function App() {
+
+  const [background, setBackground] = useState("");
+
+  const updateBackground = (background) => {
+    setBackground(background);
+  }
   
   return (
     <Main>
-      <GlobalStyle/>
+      <GlobalStyle background={background}/>
       <Router>
         <Routes>
-          <Route path="/" element={< GameLogic />} />
+          <Route path="/" element={< GameLogic  updateBackground={updateBackground} />} />
         </Routes>
       </Router>
     </Main>
@@ -22,10 +28,14 @@ function App() {
 }
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    color: black;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: black;
+  background-image: url(${(props) => props.background});
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   }
 `
 
