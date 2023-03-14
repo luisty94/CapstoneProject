@@ -1,6 +1,7 @@
 package com.capstone.project.venturethemisadventure.models.enemies;
 
 import com.capstone.project.venturethemisadventure.models.Character;
+import com.capstone.project.venturethemisadventure.models.attack.IAttack;
 import com.capstone.project.venturethemisadventure.models.attack.ITakeDamage;
 import com.capstone.project.venturethemisadventure.models.attack.Weapon;
 
@@ -8,11 +9,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "enemies")
-public class Enemy implements ITakeDamage {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "ENEMY_TYPE")
+public abstract class Enemy implements ITakeDamage, IAttack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "type")
+    private String type;
+
 
     @Column(name = "name")
     private String name;
@@ -35,6 +42,13 @@ public class Enemy implements ITakeDamage {
     }
 
     public Enemy(){}
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Long getId() {
         return id;
@@ -83,4 +97,7 @@ public class Enemy implements ITakeDamage {
         character.takeDamage(this.weapon.getDamage());
     }
 
+    public void heal(){
+        this.healthValue = 500;
+    }
 }

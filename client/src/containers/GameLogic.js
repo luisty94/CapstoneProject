@@ -42,11 +42,32 @@ const GameLogic = ({updateBackground}) => {
         nextStage("PreCombat")
     }
 
+    const checkNoEnemies = () => {
+        console.log(checkNoEnemies)
+        let enemyRemaining = false;
+        for (let enemy in enemies){
+            console.log("ENEMY:", enemy)
+            console.log(activeEnemy)
+            if (enemy.healthValue > 0){
+                enemyRemaining = true
+            }
+        }
+       
+        return enemyRemaining;
+        
+    }
+
     const startEndStage = () => {
-        // if (enemies.find(enemy => enemy.healthValue > 0).Length == 0)
-        nextStage("End")
-        // else
-        // nextStage("PreCombat")
+        if (!checkNoEnemies){
+            nextStage("End")
+            console.log(checkNoEnemies)
+            console.log("potato")
+
+        }
+        else {
+            nextStage("PreCombat")
+        }
+
     }
     
 
@@ -85,11 +106,11 @@ const GameLogic = ({updateBackground}) => {
         {stage === "CombatA" ?
         <CombatScreen activeCharacter={activeCharacter} activeEnemy={activeEnemy} setActiveEnemy = {setActiveEnemy} setActiveCharacter = {setActiveCharacter} nextStage = {nextStage}/> : ""}
         {stage === "Success" ?
-        <SuccessScreen startPreCombat={startPreCombat} activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter} startEndStage = {startEndStage}/>  : ""}
+        <SuccessScreen activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter} activeEnemy={activeEnemy} setActiveEnemy = {setActiveEnemy} enemies = {enemies} checkNoEnemies = {checkNoEnemies} startEndStage = {startEndStage}/>  : ""}
         {stage === "Retreat" ?
         <RetreatScreen startPreCombat={startPreCombat} activeCharacter = {activeCharacter} setActiveCharacter = {setActiveCharacter}/> : ""}
         {stage === "End" ?
-        <EndScreen nextStage={nextStage}/> : ""}
+        <EndScreen nextStage={nextStage} setEnemies={setEnemies}/> : ""}
         
     </>
     );

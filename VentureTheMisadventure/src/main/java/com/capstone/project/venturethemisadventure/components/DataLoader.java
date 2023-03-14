@@ -2,7 +2,7 @@ package com.capstone.project.venturethemisadventure.components;
 
 import com.capstone.project.venturethemisadventure.models.Character;
 import com.capstone.project.venturethemisadventure.models.attack.*;
-import com.capstone.project.venturethemisadventure.models.enemies.Enemy;
+import com.capstone.project.venturethemisadventure.models.enemies.*;
 import com.capstone.project.venturethemisadventure.models.player.classes.Hero;
 import com.capstone.project.venturethemisadventure.repositories.CharacterRepository;
 import com.capstone.project.venturethemisadventure.repositories.EnemyRepository;
@@ -41,19 +41,19 @@ public class DataLoader implements ApplicationRunner {
         Weapon club = new Club();
         weaponRepository.save(club);
 
-        Enemy goblin = new Enemy("Mongo the Goblin", 70, dagger,90);
+        Enemy goblin = new Goblin("Mongo the Goblin", 70, dagger,90);
         enemyRepository.save(goblin);
 
-        Enemy orc = new Enemy("Borkan the Orc", 150, sword,80);
+        Enemy orc = new Orc("Borkan the Orc", 150, sword,80);
         enemyRepository.save(orc);
 
-        Enemy troll = new Enemy("Bobo the Troll", 200,club, 50);
+        Enemy troll = new Troll("Bobo the Troll", 200,club, 50);
         enemyRepository.save(troll);
 
-        Enemy kobold = new Enemy("Sir Reginald Frost III", 10, fist, 500);
+        Enemy kobold = new Kobold("Sir Reginald Frost III", 10, fist, 500);
         enemyRepository.save(kobold);
 
-        Character luis = new Hero("Luis", 200, sword, 200);
-        characterRepository.save(luis);
+        Character secret = new Hero("???", 200, sword, 200);
+        characterRepository.save(secret);
     }
 }

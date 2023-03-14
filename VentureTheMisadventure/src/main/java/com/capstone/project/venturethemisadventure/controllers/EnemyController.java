@@ -45,6 +45,8 @@ public class EnemyController {
         updateEnemy.setWeapon(enemy.getWeapon());
         updateEnemy.setSpeed(enemy.getSpeed());
 
+        enemy.heal();
+
         enemyRepository.save(updateEnemy);
 
         return ResponseEntity.ok(updateEnemy);
@@ -58,6 +60,15 @@ public class EnemyController {
         enemy.attack(character);
         characterRepository.save(character);
         return new ResponseEntity<>(character, HttpStatus.I_AM_A_TEAPOT);
+    }
+
+    @PostMapping(value = "/enemies/heal")
+    public ResponseEntity<Enemy> postEnemyHeal(@RequestBody HashMap<String, Long> enemyObj) {
+        Enemy enemy = enemyRepository.findById(enemyObj.get("enemyId")).get();
+        enemy.heal();
+        enemyRepository.save(enemy);
+        return new ResponseEntity<>(enemy, HttpStatus.OK);
+
     }
 }
 

@@ -4,12 +4,36 @@ import styled from "styled-components";
 import Title from "../components/Title";
 import TextBox from "../components/TextBox";
 import Button from "../components/Button";
+import { postEnemyHeal } from "../EnemyService";
 
-const EndScreen = ({nextStage}) => {
+const EndScreen = ({nextStage, enemies, setEnemies}) => {
 
-    const onStartClick = () => {
+    const onStartClick = (event) => {
+        event.preventDefault();
 
+        //  const enemyObj = {...enemies}
+        //     enemyObj.id = [1, 2, 3, 4],
+        //     enemyObj.type = ["GOBLIN", "ORC", "TROLL", "KOBOLD"],
+        //     enemyObj.name = ["Mongo the Goblin", "Borkan the Orc", "Bobo the Troll", "Sir Reginald Frost III"],
+        //     enemyObj.healthValue = [70, 150, 200, 10],
+        //     enemyObj.speed = [90, 80, 50, 500],
+        //     enemyObj.weapon = [{damage: 20, id: 1}, {damage: 30, id: 2}, {damage: 50, id: 4}, {damage: 10, id: 3} ]
+            // const enemyObj = {...enemies}
+            // enemyObj.id = [1, 2, 3, 4],
+            // enemyObj.type = ["GOBLIN", "ORC", "TROLL", "KOBOLD"],
+            // enemyObj.name = ["Mongo the Goblin", "Borkan the Orc", "Bobo the Troll", "Sir Reginald Frost III"],
+            // enemyObj.healthValue = [70, 150, 200, 10],
+            // enemyObj.speed = [90, 80, 50, 500],
+            // enemyObj.weapon = [{damage: 20, id: 1}, {damage: 30, id: 2}, {damage: 50, id: 4}, {damage: 10, id: 3} ]
+            
+        //  setEnemies(enemyObj)
+            // postEnemyHeal(enemyObj).then((res) => {
+            //     setEnemies({
+            //         ...enemies,
+            //         healthValue: res.healthValue
+            //     })
         nextStage("Start");
+    // }) 
     }
 
 

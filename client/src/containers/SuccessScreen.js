@@ -29,7 +29,7 @@ const theme = {
     checkedOutColor: 'white',
 };
 
-const SuccessScreen = ({stage, startEndStage, activeCharacter, setActiveCharacter}) => {
+const SuccessScreen = ({stage, checkNoEnemies, startEndStage, activeCharacter, setActiveCharacter}) => {
 
 
     const navClick = (event) => {
@@ -45,6 +45,7 @@ const SuccessScreen = ({stage, startEndStage, activeCharacter, setActiveCharacte
                 ...activeCharacter,
                 healthValue: res.healthValue
             })
+            checkNoEnemies()
             startEndStage()
             }
         ); 

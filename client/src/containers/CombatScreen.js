@@ -33,8 +33,9 @@ const CombatScreen = ({activeCharacter, activeEnemy, setActiveCharacter, setActi
         event.preventDefault();
         
         console.log(event.target.characterId.value);
+        console.log(event.target.enemyId.value)
        
-        if (activeEnemy = ""){
+        if (!event.target.enemyId.value){
             nextStage("End")}
         else{
         const attackObj = {
